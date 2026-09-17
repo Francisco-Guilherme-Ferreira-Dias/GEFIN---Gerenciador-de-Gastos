@@ -1,6 +1,6 @@
 ﻿using GeFinbeta.Entities;
 using GeFinbeta.Entities.Enums;
-
+using GeFinbeta.Data;
 namespace GeFinbeta.Repositories
 {
     internal class GastosRepository
@@ -8,20 +8,20 @@ namespace GeFinbeta.Repositories
         private List<Gastos> _gastos = new List<Gastos>();
         private int nextId = 1;
 
-        public void Adicionar(string descricao, double valor, DateTime data, Categoria categoria)
+        public void Adicionar(string descricao, decimal valor, DateTime data, Categoria categoria)
         {
             _gastos.Add(new Gastos(descricao, valor, data, categoria, nextId));
             nextId++;
         }
 
-        public void AtualizarGasto(int id, double novoValor, DateTime novaData, Categoria novaCategoria)
+        public void AtualizarGasto(int id, decimal novoValor, DateTime novaData, Categoria novaCategoria)
         {
             var gastoParaAtualizar = _gastos.FirstOrDefault(g => g.Id == id);
             if (gastoParaAtualizar != null)
             {
                 gastoParaAtualizar.Valor = novoValor;
                 gastoParaAtualizar.Data = novaData;
-                gastoParaAtualizar.categoria = novaCategoria;
+                gastoParaAtualizar.Categoria = novaCategoria;
                 Console.WriteLine("Gasto atualizado com sucesso!");
             } else
             {

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GeFinbeta.Entities.Enums
 {
-    enum Categoria
+    public enum Categoria
     {
         Moradia,
-        Alimentação,
+        Alimentacao,
         Transporte,
         Outros
     }

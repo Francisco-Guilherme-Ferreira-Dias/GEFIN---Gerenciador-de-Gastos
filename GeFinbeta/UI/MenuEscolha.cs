@@ -52,7 +52,7 @@ namespace GeFinbeta.UI
             string descricao = Console.ReadLine();
 
             Console.Write("Valor: ");
-            double valor = double.Parse(Console.ReadLine());
+            decimal valor = decimal.Parse(Console.ReadLine());
 
             Console.Write("Data (dd/MM/yyyy): ");
             DateTime data = DateTime.Parse(Console.ReadLine());
@@ -72,7 +72,7 @@ namespace GeFinbeta.UI
             int id = int.Parse(Console.ReadLine());
 
             Console.Write("Novo valor: ");
-            double novoValor = double.Parse(Console.ReadLine());
+            decimal novoValor = decimal.Parse(Console.ReadLine());
 
             Console.Write("Nova data (dd/MM/yyyy): ");
             DateTime novaData = DateTime.Parse(Console.ReadLine());

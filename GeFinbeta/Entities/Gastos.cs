@@ -7,27 +7,27 @@ using System.Threading.Tasks;
 
 namespace GeFinbeta.Entities
 {
-    internal class Gastos
+    public class Gastos
     {
         public int Id { get; set; }
         public string Descricao { get; set; }
-        public double Valor { get; set; }
+        public decimal Valor { get; set; }
         public DateTime Data { get; set; }
-        public Categoria categoria { get; set; }
+        public Categoria Categoria { get; set; }
 
         public Gastos() { }
-        public Gastos(string descricao, double valor, DateTime data, Categoria categoria, int id)
+        public Gastos(string descricao, decimal valor, DateTime data, Categoria categoria, int id)
         {
             Descricao = descricao;
             Valor = valor;
             Data = data;
-            this.categoria = categoria;
+            Categoria = categoria;
             Id = id;
         }
 
         public override string ToString()
         {
-            return $"Descrição: {Descricao}, Valor: {Valor}, Data: {Data.ToShortDateString()}, Categoria: {categoria}";
+            return $"Descrição: {Descricao}, Valor: {Valor}, Data: {Data.ToShortDateString()}, Categoria: {Categoria}";
         }
 
         
