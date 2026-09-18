@@ -1,53 +1,256 @@
-# GeFinbeta 💰
+# 💰 GEFIN — Gerenciador Financeiro
 
-Um gerenciador de finanças pessoais que comecei enquanto estudava orientação a objetos em C#. A ideia nasceu de um problema bem real: eu queria controlar meus próprios gastos, então resolvi construir a ferramenta em vez de usar um app pronto.
+O **GEFIN** é uma aplicação web para gerenciamento de finanças pessoais, desenvolvida com o objetivo de colocar em prática conceitos de desenvolvimento Full Stack.
 
-Por enquanto ele roda no console, mas o plano é fazer ele crescer — no fim das contas, meu objetivo é ter uma API de verdade rodando por trás e um front-end web mostrando tudo isso em gráficos.
+O sistema permite cadastrar, visualizar, editar e excluir gastos e receitas, além de apresentar um dashboard com um resumo financeiro mensal e a distribuição dos gastos por categoria.
 
-## O que ele já faz
+> 🚧 Projeto em desenvolvimento. Novas funcionalidades e melhorias visuais ainda serão adicionadas.
 
-Hoje dá pra fazer o básico de um controle de gastos:
+---
 
-- Cadastrar um gasto (descrição, valor, data e categoria)
-- Listar todos os gastos cadastrados
-- Atualizar um gasto existente
-- Excluir um gasto
-- Tudo isso navegando por um menu simples no terminal
+## 📊 Funcionalidades
 
-## Como o código está organizado
+### Dashboard
 
-Enquanto aprendia sobre boas práticas, decidi não deixar tudo jogado dentro do `Program.cs` (como fiz nos primeiros exercícios do curso). Separei o projeto em camadas, cada uma com uma responsabilidade clara:
+- Visualização do total de receitas do mês
+- Visualização do total de gastos do mês
+- Cálculo automático do saldo
+- Identificação da categoria com maior gasto
+- Filtro por mês e ano
+- Gráfico de gastos por categoria
+- Formatação dos valores em Real (BRL)
 
+### Gastos
+
+- Cadastro de gastos
+- Listagem de gastos
+- Edição de gastos
+- Exclusão de gastos
+- Classificação por categoria
+
+Categorias disponíveis atualmente:
+
+- Moradia
+- Alimentação
+- Transporte
+- Outros
+
+### Receitas
+
+- Cadastro de receitas
+- Listagem de receitas
+- Edição de receitas
+- Exclusão de receitas
+
+### Navegação
+
+A aplicação utiliza Vue Router para navegação entre:
+
+- Dashboard
+- Gastos
+- Receitas
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+### Backend
+
+- C#
+- .NET
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQLite
+- Swagger / OpenAPI
+
+### Frontend
+
+- Vue.js
+- JavaScript
+- Vite
+- Vue Router
+- Chart.js
+- HTML
+- CSS
+
+### Versionamento
+
+- Git
+- GitHub
+
+---
+
+## 🏗️ Arquitetura
+
+O projeto é dividido entre backend e frontend.
+
+```text
+GEFIN
+│
+├── GeFinbeta.Api
+│   ├── Controllers
+│   ├── DTOs
+│   └── API REST
+│
+├── GeFinbeta
+│   ├── Data
+│   ├── Entities
+│   └── SQLite
+│
+└── gefin-frontend
+    └── src
+        ├── assets
+        ├── router
+        ├── services
+        └── views
 ```
-GeFinbeta/
-├── Entities/          → as classes que representam os dados (Gasto, enum Categoria)
-├── Repository/         → tudo que mexe na lista de gastos (criar, listar, editar, excluir)
-├── UI/                 → o menu e a interação com o usuário
-└── Program.cs          → só "liga" as peças e inicia o programa
+
+O frontend Vue se comunica com a API ASP.NET Core através de requisições HTTP.
+
+```text
+Vue.js
+   ↓
+Services
+   ↓
+HTTP / JSON
+   ↓
+ASP.NET Core Web API
+   ↓
+Entity Framework Core
+   ↓
+SQLite
 ```
 
-A ideia por trás dessa separação: o `Program.cs` não precisa saber *como* um gasto é salvo ou atualizado, só precisa chamar quem sabe fazer isso. Isso deixou o código bem mais fácil de mexer depois — quando eu quis trocar a lógica de edição, por exemplo, só precisei alterar um arquivo, sem quebrar o resto.
+---
 
-## Rodando o projeto
+## 🔌 API
 
-Precisa do .NET instalado. Depois é só:
+A aplicação possui endpoints para gerenciamento de gastos e receitas.
+
+### Gastos
+
+```http
+GET    /api/Gastos
+GET    /api/Gastos/{id}
+POST   /api/Gastos
+PUT    /api/Gastos/{id}
+DELETE /api/Gastos/{id}
+```
+
+Também existem endpoints utilizados pelo dashboard:
+
+```http
+GET /api/Gastos/resumo?mes={mes}&ano={ano}
+
+GET /api/Gastos/por-categoria?mes={mes}&ano={ano}
+```
+
+### Receitas
+
+```http
+GET    /api/Receitas
+GET    /api/Receitas/{id}
+POST   /api/Receitas
+PUT    /api/Receitas/{id}
+DELETE /api/Receitas/{id}
+```
+
+---
+
+## 📈 Dashboard
+
+O dashboard apresenta informações financeiras de acordo com o mês e ano selecionados.
+
+Entre os dados apresentados estão:
+
+- Receitas
+- Gastos
+- Saldo
+- Categoria com maior gasto
+- Distribuição dos gastos por categoria
+
+O gráfico é construído utilizando **Chart.js** a partir dos dados fornecidos pela API.
+
+---
+
+## ▶️ Executando o projeto
+
+### Pré-requisitos
+
+Para executar o projeto localmente é necessário ter instalado:
+
+- .NET SDK
+- Node.js
+- npm
+
+### Backend
+
+Acesse o projeto da API:
+
+```bash
+cd GeFinbeta.Api
+```
+
+Execute:
 
 ```bash
 dotnet run
 ```
 
-E seguir o menu que aparece no terminal.
+A API será iniciada localmente.
 
-## Próximos passos
+O Swagger pode ser utilizado para visualizar e testar os endpoints.
 
-Esse projeto ainda está bem no início. A lista do que quero fazer, em ordem:
+### Frontend
 
-- [✔️] Persistir os dados de verdade com Entity Framework Core + SQLite (hoje, fechar o programa apaga tudo)
-- [✔️] Transformar em uma API com ASP.NET Core 
-- [✔️] Conectar com um front-end
-- [ ] Gráfico de pizza mostrando gastos por categoria
-- [ ] Filtro de gastos por mês
+Em outro terminal, acesse:
 
-## Por que esse projeto existe
+```bash
+cd gefin-frontend
+```
 
-Sou iniciante em C# e decidi que, em vez de só fazer exercícios soltos do curso, valia mais a pena aplicar o que fui aprendendo (herança, polimorfismo, coleções, enums) em algo que eu realmente usaria. Esse repositório é basicamente o registro dessa jornada — vai ficar evoluindo conforme eu for aprendendo mais.
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Execute:
+
+```bash
+npm run dev
+```
+
+Depois abra no navegador o endereço informado pelo Vite.
+
+---
+
+## 🗺️ Próximas melhorias
+
+Algumas funcionalidades planejadas para as próximas versões:
+
+- Melhorias na identidade visual
+- Melhorias de responsividade
+- Categorias personalizadas
+- Melhorias de validação e experiência do usuário
+- Novos gráficos e relatórios
+- Autenticação de usuários
+- Organização e componentização do frontend
+
+---
+
+## 🎯 Objetivo do projeto
+
+O GEFIN está sendo desenvolvido como projeto de estudo e portfólio, aplicando na prática conceitos como:
+
+- Desenvolvimento de APIs REST
+- CRUD
+- Integração entre frontend e backend
+- Requisições HTTP
+- Manipulação de JSON
+- Entity Framework Core
+- Persistência de dados
+- Vue.js
+- Roteamento em SPA
+- Visualização de dados
+- Git e GitHub
