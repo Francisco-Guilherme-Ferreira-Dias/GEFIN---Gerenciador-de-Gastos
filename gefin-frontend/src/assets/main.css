@@ -1,0 +1,84 @@
+/* ==============================
+   GEFIN - ESTILOS GLOBAIS
+   ============================== */
+
+:root {
+  --cor-primaria: #16a34a;
+  --cor-primaria-hover: #15803d;
+
+  --cor-fundo: #f8fafc;
+  --cor-card: #ffffff;
+
+  --cor-texto: #1e293b;
+  --cor-texto-secundario: #64748b;
+
+  --cor-borda: #e2e8f0;
+
+  --cor-receita: #16a34a;
+  --cor-gasto: #dc2626;
+  --cor-alerta: #f59e0b;
+
+  --sombra-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* RESET BÁSICO */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body {
+  margin: 0;
+
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* TÍTULOS */
+
+h1,
+h2,
+h3 {
+  color: var(--cor-texto);
+}
+
+/* BOTÕES */
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    transform 0.1s;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* INPUTS */
+
+input,
+select {
+  font-family: inherit;
+}
+
+/* LINKS */
+
+a {
+  color: inherit;
+}
