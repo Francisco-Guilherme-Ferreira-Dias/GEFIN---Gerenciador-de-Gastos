@@ -42,9 +42,9 @@ E seguir o menu que aparece no terminal.
 
 Esse projeto ainda está bem no início. A lista do que quero fazer, em ordem:
 
-- [ ] Persistir os dados de verdade com Entity Framework Core + SQLite (hoje, fechar o programa apaga tudo)
-- [ ] Transformar em uma API com ASP.NET Core 
-- [ ] Conectar com um front-end
+- [✔️] Persistir os dados de verdade com Entity Framework Core + SQLite (hoje, fechar o programa apaga tudo)
+- [✔️] Transformar em uma API com ASP.NET Core 
+- [✔️] Conectar com um front-end
 - [ ] Gráfico de pizza mostrando gastos por categoria
 - [ ] Filtro de gastos por mês
 
